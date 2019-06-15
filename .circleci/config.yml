@@ -7,10 +7,10 @@ references:
     working-directory: ~/react-ts-starter
   restore-node-modules: &restore-node-modules
     restore-cache:
-      key: dependency-cache-{{ checksum "yarn.lock" }}
+      key: node-modules-{{ checksum "yarn.lock" }}
   save-node-modules: &save-node-modules
     save-cache:
-      key: dependency-cache-{{ checksum "yarn.lock" }}
+      key: node-modules-{{ checksum "yarn.lock" }}
       paths:
         - ./node_modules
 
