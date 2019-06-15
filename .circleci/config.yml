@@ -1,0 +1,66 @@
+version: 2 # use CircleCI 2.0
+
+references:
+  js_env: &js_env
+    docker:
+      - image: circleci/node:12.4.0
+    working_directory: ~/react-ts-starter
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      key: dependency-cache-{{ checksum "yarn.lock" }}
+  save_node_modules: &save_node_modules
+    save_cache:
+      key: dependency-cache-{{ checksum "yarn.lock" }}
+      paths:
+        - ./node_modules
+
+jobs:
+  setup:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: js:install
+          command: yarn
+      - *save_node_modules
+  type-checker:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: lint:tsc
+          command: yarn lint:tsc
+  lint:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: lint:tsx
+          command: yarn lint:tsx
+  test:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: test
+          command: yarn test
+workflows:
+  version: 2
+  js_ci:
+    jobs:
+      - setup
+      - type-checker:
+          requires:
+            - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+            - type-checker;
+            - lint;
