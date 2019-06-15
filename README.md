@@ -1,6 +1,7 @@
 # React TypeScript Starter
 
 ![CircleCI](https://img.shields.io/circleci/build/github/varbrad/react-ts-starter.svg?style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/github/varbrad/react-ts-starter.svg?style=for-the-badge)
 
 A starting point for React projects written in TypeScript
 
