@@ -50,7 +50,7 @@ jobs:
           command: yarn test --coverage
       - run:
           name: codecov
-          command: codecov -f coverage/*.json
+          command: yarn codecov -f coverage/*.json
 workflows:
   version: 2
   js-ci:
