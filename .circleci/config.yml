@@ -12,7 +12,7 @@ references:
     save-cache:
       key: dependency-cache-{{ checksum "yarn.lock" }}
       paths:
-        - ./node-modules
+        - ./node_modules
 
 jobs:
   setup:
