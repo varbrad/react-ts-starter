@@ -3,6 +3,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "lib": ["es2018", "dom"],
+    "sourceMap": true,
     "resolveJsonModule": true
   }
 }

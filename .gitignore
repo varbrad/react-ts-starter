@@ -1,6 +1,7 @@
 # Folders
 .cache
 dist
+coverage
 node_modules
 
 # Files

@@ -47,7 +47,10 @@ jobs:
       - *restore-node-modules
       - run:
           name: test
-          command: yarn test
+          command: yarn test --coverage
+      - run:
+          name: codecov
+          command: codecov -f coverage/*.json
 workflows:
   version: 2
   js-ci:
