@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "parcel build src/index.html",
+    "codecov": "codecov",
     "lint": "run-p -n lint:tsc lint:tsx",
     "lint:tsc": "tsc --noEmit",
     "lint:tsx": "eslint src --ext .ts,.tsx",
