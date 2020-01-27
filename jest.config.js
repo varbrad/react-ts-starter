@@ -3,4 +3,9 @@ module.exports = {
   testEnvironment: 'jsdom',
   collectCoverageFrom: ['src/**', '!**/node_modules/**', '!**/vendor/**'],
   setupFilesAfterEnv: ['@testing-library/react/cleanup-after-each'],
+  globals: {
+    'ts-jest': {
+      diagnostics: false,
+    },
+  },
 };

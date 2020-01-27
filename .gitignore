@@ -1,8 +1,10 @@
 # Folders
 .cache
+.stryker-tmp
 dist
 coverage
 node_modules
+reports
 
 # Files
 .env

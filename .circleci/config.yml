@@ -7,10 +7,10 @@ references:
     working-directory: ~/react-ts-starter
   restore-node-modules: &restore-node-modules
     restore-cache:
-      key: node-modules-{{ checksum "yarn.lock" }}
+      key: node-modules-{{ checksum "package-lock.json" }}
   save-node-modules: &save-node-modules
     save-cache:
-      key: node-modules-{{ checksum "yarn.lock" }}
+      key: node-modules-{{ checksum "package-lock.json" }}
       paths:
         - ./node_modules
 
@@ -22,7 +22,7 @@ jobs:
       - *restore-node-modules
       - run:
           name: js:install
-          command: yarn
+          command: npm install
       - *save-node-modules
   type-checker:
     <<: *js-env
@@ -31,7 +31,7 @@ jobs:
       - *restore-node-modules
       - run:
           name: lint:tsc
-          command: yarn lint:tsc
+          command: npm run lint:tsc
   lint:
     <<: *js-env
     steps:
@@ -39,7 +39,7 @@ jobs:
       - *restore-node-modules
       - run:
           name: lint:tsx
-          command: yarn lint:tsx
+          command: npm run lint:tsx
   test:
     <<: *js-env
     steps:
@@ -47,10 +47,18 @@ jobs:
       - *restore-node-modules
       - run:
           name: test
-          command: yarn test --coverage
+          command: npm run test --coverage
       - run:
           name: codecov
-          command: yarn codecov -f coverage/*.json
+          command: npm run codecov -f coverage/*.json
+  mutation:
+    <<: *js-env
+    steps:
+      - checkout
+      - *restore-node-modules
+      - run:
+          name: test:mutation
+          command: npm run test:mutation
 workflows:
   version: 2
   js-ci:
@@ -67,3 +75,7 @@ workflows:
             - setup
             - type-checker
             - lint
+      - mutation:
+          requires:
+            - setup
+            - test

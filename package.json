@@ -8,13 +8,18 @@
     "lint:tsc": "tsc --noEmit",
     "lint:tsx": "eslint src --ext .ts,.tsx",
     "start": "parcel src/index.html",
-    "test": "jest"
+    "test": "jest",
+    "test:mutation": "stryker run"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@stryker-mutator/core": "^2.5.0",
+    "@stryker-mutator/html-reporter": "^2.5.0",
+    "@stryker-mutator/jest-runner": "^2.5.0",
+    "@stryker-mutator/typescript": "^2.5.0",
     "@testing-library/dom": "^5.2.0",
     "@testing-library/react": "^8.0.1",
     "@types/jest": "^24.0.14",
